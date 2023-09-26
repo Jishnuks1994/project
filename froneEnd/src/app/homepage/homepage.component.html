@@ -1,0 +1,75 @@
+<div class="container col-lg-8 col-md-8 col-sm-8 bg-secondary-subtle py-3 my-3 rounded-3">
+    <h1 class="text-center">Welcome {{user}}</h1>
+    <p class="text-center">we are happy to see you here, choosing us as your personal shopping entity</p>
+    <div>
+        <p class="text-center">select what you need</p>
+
+        <div class="d-flex">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Rate in kg</th>                    <th scope="col">Select quantity (kg)</th>
+                    <th scope="col">Rate</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of items let j=index" [formGroup]="quantityForm">
+                    <td scope="row">{{j+1}}</td>
+                    <td>{{i.item}}</td>
+                    <td>{{i.price}}</td>
+                    <td><input (keyup)="sum(i.price,i.qt)" [(ngModel)]="i.qt" formControlName="quantity" id="q" name="q" type="text" value="0" class="form-control w-50"></td> 
+                    <td><p *ngIf="i.qt>0">{{i.price*i.qt}}</p></td> 
+                  </tr>
+                  <tr>
+                    
+                    <td scope="col">Total</td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                  <td scope="col"  >{{total}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="  text-center">
+      <button type="button" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+       Buy Now
+      </button>
+    </div>
+<div class="text-end">
+      <button class="btn btn-warning" (click)="logout()">Logout</button>
+  
+</div>  </div>
+
+<!-- -------------------------------------------------- -->
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Hi {{user}} Enter your details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="purchaseForm">
+          <div class="mb-2"><input formControlName="phone" type="tel" class="form-control" placeholder="Enter Your Mobile Number"></div>
+          <div *ngIf="purchaseForm.get('phone')?.errors&&purchaseForm.get('phone')?.touched" ><p class="text-danger">only number allowed</p></div>
+          <div><textarea  formControlName="address" name="address" id="address" cols="30" rows="5" class="form-control" placeholder="Enter Your Address"></textarea></div>
+          <div *ngIf="purchaseForm.get('address')?.errors&&purchaseForm.get('address')?.touched" ><p class="text-danger">Symbols not allowed</p></div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button (click)="buy()" type="button" class="btn btn-success">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

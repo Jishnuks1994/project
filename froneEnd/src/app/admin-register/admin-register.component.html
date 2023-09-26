@@ -1,0 +1,18 @@
+<div class="container col-lg-8 col-md-8 col-sm-8 bg-secondary-subtle py-3 my-3 rounded-3">
+<form [formGroup]="signUpModelForm">
+    <input formControlName="name" class="form-control mt-2" type="text" id="n" name="name" placeholder="Enter your Name">
+    <div *ngIf="signUpModelForm.get('name')?.errors&&signUpModelForm.get('name')?.touched"><p class="text-danger">use letters only</p></div>
+    <input formControlName="email" class="form-control mt-2"  type="email" id="e" name="email" placeholder="Enter your email id">
+    <div *ngIf="signUpModelForm.get('email')?.errors&&signUpModelForm.get('email')?.touched"><p class="text-danger">incorrect e-mail id format</p></div>
+    <input formControlName="phone" class="form-control mt-2"  type="number" id="p" name="number" placeholder="Enter your phone number">
+    <div *ngIf="signUpModelForm.get('phone')?.errors&&signUpModelForm.get('phone')?.touched"><p class="text-danger">use numbers only</p></div>
+    <input formControlName="secretKey" class="form-control mt-2" type="text" id="secretKey" name="secretKey" placeholder="Enter the secret key">
+    <div *ngIf="signUpModelForm.get('secretKey')?.errors&&signUpModelForm.get('secretKey')?.touched"><p class="text-danger">use numbers and letters only</p></div>
+    <input formControlName="password" class="form-control mt-2"  type="password" id="ps" name="Psw" placeholder="Enter your password">
+    <div *ngIf="signUpModelForm.get('password')?.errors&&signUpModelForm.get('password')?.touched"><p class="text-danger">use numbers and letters only</p></div>
+    <input formControlName="cnfPassword" class="form-control mt-2"  type="password" id="psw" name="psw1" placeholder="Confirm password">
+    <div *ngIf="signUpModelForm.get('cnfPassword')?.errors&&signUpModelForm.get('cnfPassword')?.touched"><p class="text-danger">use numbers and letters only</p></div>
+    <button (click)="signup()" type="button" class="btn mt-2 btn-warning">Sign Up</button><br>
+    <a class="text-decoration-none text-dark" href="admin">already registered click here to log in as admin</a>
+</form>
+</div>

@@ -1,0 +1,16 @@
+<h1 class="text-center py-1">Log in as Admin</h1>
+
+<div class="container col-lg-8 col-md-8 col-sm-8 bg-secondary-subtle py-3 my-3 rounded-3">
+    <form [formGroup]="loginForm">
+        <input formControlName="email" class="form-control mt-2" type="text" id="u" name="email id" placeholder="Enter your email id">
+        <div *ngIf="loginForm.get('email')?.errors&&loginForm.get('email')?.touched"><p class="text-danger">enter valid email id</p></div>
+        <input formControlName="password" class="form-control mt-2"  type="text" id="p" name="password" placeholder="Enter your password">
+        <div *ngIf="loginForm.get('password')?.errors&&loginForm.get('password')?.touched"><p class="text-danger">accept numebers and letters only</p></div>
+        <input formControlName="secretKey" class="form-control mt-2" type="text" id="secretKey" name="secretKey" placeholder="Enter the secret key">
+        <div *ngIf="loginForm.get('secretKey')?.errors&&loginForm.get('secretKey')?.touched"><p class="text-danger">use numbers and letters only</p></div>
+        <button (click)="login()" type="button" class="btn mt-2 btn-warning">Log In</button><br>
+        <a class="text-decoration-none text-dark" href="adminRegister">click here to register as admin</a>
+        <br>
+        <a class="text-decoration-none text-dark" href="">go back to homepage</a>
+    </form>
+</div>
